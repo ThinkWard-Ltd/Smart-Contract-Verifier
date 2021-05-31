@@ -12,8 +12,8 @@ class CircularPercentageIndicator extends StatelessWidget {
     return Container(
         padding: EdgeInsets.all(10),
         child: CircularPercentIndicator(
-          radius: 120.0,
-          lineWidth: 10.0,
+          radius: 88.0,
+          lineWidth: 8.0,
           animation: true,
           percent: percentage / 100,
           center: Text(

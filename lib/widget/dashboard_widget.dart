@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/widget/circular_percentage_indicator_widget.dart';
+import 'package:frontend/widget/dashboard_card_widget.dart';
 
 class Dashboard extends StatelessWidget {
   final dashDataList = [
@@ -12,15 +12,37 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     var name;
     var percentage;
-    return GridView.count(
-        crossAxisCount: 1,
+
+
+   return ListView(
         children: List.generate(
-          dashDataList.length,
-          (index) {
-            name = dashDataList[index]['name'];
-            percentage = dashDataList[index]['percentage'];
-            return CircularPercentageIndicator(percentage);
-          },
-        ));
+            dashDataList.length,
+            (index) {
+              name = dashDataList[index]['name'];
+              percentage = dashDataList[index]['percentage'];
+              // return CircularPercentageIndicator(percentage);
+              return DashboardCard(
+                  contractName: name,
+                  percentage: percentage,
+              );
+            },
+          ),
+   );
+
+    // return GridView.count(
+    //   crossAxisCount: 1,
+    //   children: List.generate(
+    //     dashDataList.length,
+    //     (index) {
+    //       name = dashDataList[index]['name'];
+    //       percentage = dashDataList[index]['percentage'];
+    //       // return CircularPercentageIndicator(percentage);
+    //       return DashboardCard(
+    //           contractName: name,
+    //           percentage: percentage,
+    //       );
+    //     },
+    //   ),
+    // );
   }
 }

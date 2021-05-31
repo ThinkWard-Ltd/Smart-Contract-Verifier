@@ -6,6 +6,7 @@ class Dashboard extends StatelessWidget {
     {'name': 'Contract A', 'percentage': 10},
     {'name': 'Contract B', 'percentage': 40},
     {'name': 'Contract C', 'percentage': 60},
+    {'name': 'Contract D', 'percentage': 90},
   ];
 
   @override

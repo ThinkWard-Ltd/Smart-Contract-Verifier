@@ -23,9 +23,20 @@ class DashboardCard extends StatelessWidget {
               contractName,
               style: TextStyle(color: Colors.white),
             ),
-            subtitle: Text(
-              'Current Status',
-              style: TextStyle(color: Colors.white.withOpacity(0.6)),
+            subtitle: Row(
+              children: [
+                Icon(
+                  Icons.circle,
+                  size: 10,
+                  color: Colors.lightGreenAccent,
+                ),
+                Text(' '),
+                Text(
+                  'Active',
+                  style: TextStyle(
+                      color: Colors.lightGreenAccent.withOpacity(0.6)),
+                ),
+              ],
             ),
           ),
           CircularPercentageIndicator(percentage),

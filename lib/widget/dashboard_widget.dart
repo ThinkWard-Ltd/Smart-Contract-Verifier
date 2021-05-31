@@ -13,36 +13,19 @@ class Dashboard extends StatelessWidget {
     var name;
     var percentage;
 
-
-   return ListView(
-        children: List.generate(
-            dashDataList.length,
-            (index) {
-              name = dashDataList[index]['name'];
-              percentage = dashDataList[index]['percentage'];
-              // return CircularPercentageIndicator(percentage);
-              return DashboardCard(
-                  contractName: name,
-                  percentage: percentage,
-              );
-            },
-          ),
-   );
-
-    // return GridView.count(
-    //   crossAxisCount: 1,
-    //   children: List.generate(
-    //     dashDataList.length,
-    //     (index) {
-    //       name = dashDataList[index]['name'];
-    //       percentage = dashDataList[index]['percentage'];
-    //       // return CircularPercentageIndicator(percentage);
-    //       return DashboardCard(
-    //           contractName: name,
-    //           percentage: percentage,
-    //       );
-    //     },
-    //   ),
-    // );
+    return ListView(
+      children: List.generate(
+        dashDataList.length,
+        (index) {
+          name = dashDataList[index]['name'];
+          percentage = dashDataList[index]['percentage'];
+          // return CircularPercentageIndicator(percentage);
+          return DashboardCard(
+            contractName: name,
+            percentage: percentage,
+          );
+        },
+      ),
+    );
   }
 }

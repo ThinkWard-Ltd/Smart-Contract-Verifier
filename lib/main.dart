@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:frontend/widget/navigation_drawer_widget.dart';
 import 'package:frontend/widget/dashboard_widget.dart';
+import 'package:frontend/widget/navigation_drawer_widget.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +15,6 @@ Future main() async {
 
 class MyApp extends StatelessWidget {
   static final String title = 'Dashboard SCV';
-
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -43,9 +42,8 @@ class _MainPageState extends State<MainPage> {
         body: Builder(
           builder: (context) => Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(horizontal: 32),
+            padding: EdgeInsets.symmetric(horizontal: 18),
             child: Dashboard(),
-            // Scaffold.of(context).openEndDrawer();
           ),
         ),
       );

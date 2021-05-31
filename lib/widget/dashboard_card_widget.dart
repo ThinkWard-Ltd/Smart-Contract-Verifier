@@ -9,17 +9,23 @@ class DashboardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Card(
       clipBehavior: Clip.antiAlias,
+      color: Color.fromRGBO(79, 79, 79, 1),
       child: Column(
         children: [
           ListTile(
-            leading: Icon(Icons.article_outlined),
-            title:  Text(contractName),
+            leading: Icon(
+              Icons.article_outlined,
+              color: Colors.white,
+            ),
+            title: Text(
+              contractName,
+              style: TextStyle(color: Colors.white),
+            ),
             subtitle: Text(
               'Current Status',
-              style: TextStyle(color: Colors.black.withOpacity(0.6)),
+              style: TextStyle(color: Colors.white.withOpacity(0.6)),
             ),
           ),
           CircularPercentageIndicator(percentage),
@@ -37,6 +43,5 @@ class DashboardCard extends StatelessWidget {
         ],
       ),
     );
-
   }
 }

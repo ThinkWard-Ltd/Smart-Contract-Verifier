@@ -14,15 +14,15 @@ class ComingSoon extends StatelessWidget {
 
           Center(
               child: Text(
-            "Coming Soon",
+            "Under Construction",
             style: TextStyle(
-              color: Colors.teal,
-              fontSize: 30,
+              color: Colors.tealAccent,
+              fontSize: 18,
             ),
           )),
           Center(
             child: Image.asset(
-              'graphics/cena.gif',
+              'graphics/comingSoon.gif',
               colorBlendMode: BlendMode.darken,
               height: 88,
               alignment: Alignment.center,

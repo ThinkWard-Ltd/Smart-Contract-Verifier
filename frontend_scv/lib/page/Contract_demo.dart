@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'dart:html';
+
+import 'package:web3dart/browser.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -214,6 +217,22 @@ class _DemoState extends State<ContractDemo> {
     });
   }
 
+  void tryMetamask() async { //For this to work, a chrome session must be started out of debug mode. Copy the url to a normal tab
+    final meta = window.ethereum;
+    if (meta == null) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Text("Metamask is not available"),
+            );
+          });
+      return;
+    }
+    final credentials = await meta.requestAccount();
+    print (credentials);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -224,6 +243,13 @@ class _DemoState extends State<ContractDemo> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          OutlinedButton(
+            onPressed: tryMetamask,
+            child: Text(
+              "Attempt Metamask\nConnection",
+              textAlign: TextAlign.center,
+            ),
+          ),
           TextField(
             style: TextStyle(color: Colors.white70),
             controller: pkInputController,

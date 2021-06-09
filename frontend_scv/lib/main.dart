@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:frontend_scv/page/Contract_demo.dart';
-//import 'dart:math';
 import 'package:http/http.dart'; // as http;
+
 import 'package:web3dart/web3dart.dart';
 import 'dart:async';
 

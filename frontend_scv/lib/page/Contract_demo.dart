@@ -48,6 +48,8 @@ class _DemoState extends State<ContractDemo> {
   int tryVal = -1;
   BigInt sendVal = BigInt.from(0);
 
+  var metaCred = null;
+
   Web3Client bcClient =
       Web3Client("HTTP://127.0.0.1:8545", Client()); //BlockChainClient
 
@@ -114,10 +116,12 @@ class _DemoState extends State<ContractDemo> {
   Future<String> makeWriteCall(String funct, List<dynamic> args) async {
     EthPrivateKey cred =
         EthPrivateKey.fromHex(pk); //Credentials from private key
+
     final theContract = await getContract();
     final fun = theContract.function(funct);
+    final testCred = metaCred;
     final theResult = await bcClient.sendTransaction(
-        cred,
+        testCred,
         Transaction.callContract(
             contract: theContract, function: fun, parameters: args));
     return theResult;
@@ -231,6 +235,14 @@ class _DemoState extends State<ContractDemo> {
     }
     final credentials = await meta.requestAccount();
     print (credentials);
+    metaCred = credentials;
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text("Nothing interesting"),//Text(credentials.sign(payload)),
+          );
+        });
   }
 
   @override

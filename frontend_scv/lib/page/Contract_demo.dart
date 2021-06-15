@@ -127,6 +127,18 @@ class _DemoState extends State<ContractDemo> {
     return theResult;
   }
 
+  void createInitialAgreement() async { //Create agreement on the backend. Should be post though
+    final result = await get(Uri.parse('https://api.chucknorris.io/jokes/random'));
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(result.body.toString()),
+          );
+        });
+
+  }
+
   void openAgreement() async {
     try {
       loadValues();
@@ -296,6 +308,13 @@ class _DemoState extends State<ContractDemo> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                OutlinedButton(
+                  onPressed: createInitialAgreement,
+                  child: Text(
+                    "API Request",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
                 OutlinedButton(
                   onPressed: getContractRes,
                   child: Text(

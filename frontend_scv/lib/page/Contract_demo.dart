@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:math';
-
+import 'dart:convert';
 import 'dart:html';
 
 import 'package:web3dart/browser.dart';
@@ -127,15 +127,57 @@ class _DemoState extends State<ContractDemo> {
     return theResult;
   }
 
-  void createInitialAgreement() async { //Create agreement on the backend. Should be post though
-    final result = await get(Uri.parse('https://api.chucknorris.io/jokes/random'));
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            content: Text(result.body.toString()),
-          );
-        });
+  //API requests here. CTRL F to find this line
+  void createInitialAgreement() async { //Create agreement on the backend.
+    final result = await post(
+      Uri.parse('http://localhost/apipath'), //And create agreement path
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'PartyA' : address,
+        'PartyB' : address2
+      }),
+    );
+
+  }
+
+  void proposeCondition(int contract, String condition) async { //Create condition/term for a contract.
+    final result = await post(
+      Uri.parse('http://localhost/apipath'), //And create condition path
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'Party' : address,
+        'AgreementID' : contract.toString(),
+        'Description' : condition
+      }),
+    );
+
+  }
+
+  void acceptCondition(int agreement, int condition, bool accept) async { //Accept proposed condition
+    final result = await post(
+      Uri.parse('http://localhost/apipath'), //And accept condition path
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{ //Revised request object. AgreementID, ConditionID, Accept True/False
+        'Agreement' : agreement.toString(),
+        'Condition' : condition.toString(),
+        'Accept' : accept.toString()
+      }),
+    );
+
+  }
+
+  void getConditions(int agreement) async { //Get the conditions associated with an agreement
+    final result = await get(
+      Uri.parse('http://localhost/apipath' + agreement.toString()), //And get conditions path
+    );
+
+    String conditions = result.body;
 
   }
 
@@ -255,6 +297,7 @@ class _DemoState extends State<ContractDemo> {
             content: Text("Nothing interesting"),//Text(credentials.sign(payload)),
           );
         });
+    address = credentials.address.toString();
   }
 
   @override
